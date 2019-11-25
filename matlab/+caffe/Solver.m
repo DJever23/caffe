@@ -37,7 +37,9 @@ classdef Solver < handle
       end
     end
     function delete (self)
-      caffe_('delete_solver', self.hSolver_self);
+		if self.isvalid
+      		caffe_('delete_solver', self.hSolver_self);
+		end
     end
     function iter = iter(self)
       iter = caffe_('solver_get_iter', self.hSolver_self);
